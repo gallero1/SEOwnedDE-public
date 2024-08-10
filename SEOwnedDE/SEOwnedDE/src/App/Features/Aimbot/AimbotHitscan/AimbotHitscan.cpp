@@ -347,7 +347,7 @@ bool CAimbotHitscan::GetTarget(C_TFPlayer *pLocal, C_TFWeaponBase *pWeapon, Targ
 			{
 				if (!Target.m_pLagRecord)
 				{
-					int nHitHitbox = -1;
+					int nHitHitbox = 3;
 
 					if (!F::AimUtils->TraceEntityBullet(Target.m_pEntity, vLocalPos, Target.m_vPosition, &nHitHitbox))
 					{
@@ -450,7 +450,7 @@ void CAimbotHitscan::Aim(CUserCmd *pCmd, C_TFPlayer *pLocal, C_TFWeaponBase *pWe
 
 	switch (CFG::Aimbot_Hitscan_Aim_Type)
 	{
-		case 0:
+		case 10:
 		{
 			pCmd->viewangles = vAngleTo;
 			break;
