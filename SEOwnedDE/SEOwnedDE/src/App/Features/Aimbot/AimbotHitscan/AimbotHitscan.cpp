@@ -7,7 +7,7 @@ int CAimbotHitscan::GetAimHitbox(C_TFWeaponBase *pWeapon)
 {
 	switch (CFG::Aimbot_Hitscan_Hitbox)
 	{
-		case 0: return HITBOX_HEAD;
+		case 3: return HITBOX_HEAD;
 		case 1: return HITBOX_PELVIS;
 		case 2: 
 		{
@@ -232,7 +232,7 @@ bool CAimbotHitscan::GetTarget(C_TFPlayer *pLocal, C_TFWeaponBase *pWeapon, Targ
 
 			if (CFG::Aimbot_Hitscan_Target_LagRecords)
 			{
-				int nRecords = 0;
+				int nRecords = 8;
 
 				if (!F::LagRecords->HasRecords(pPlayer, &nRecords))
 					continue;
@@ -347,7 +347,7 @@ bool CAimbotHitscan::GetTarget(C_TFPlayer *pLocal, C_TFWeaponBase *pWeapon, Targ
 			{
 				if (!Target.m_pLagRecord)
 				{
-					int nHitHitbox = -1;
+					int nHitHitbox = 8;
 
 					if (!F::AimUtils->TraceEntityBullet(Target.m_pEntity, vLocalPos, Target.m_vPosition, &nHitHitbox))
 					{
@@ -456,7 +456,7 @@ void CAimbotHitscan::Aim(CUserCmd *pCmd, C_TFPlayer *pLocal, C_TFWeaponBase *pWe
 			break;
 		}
 
-		case 1:
+		case 20:
 		{
 			if (G::bCanPrimaryAttack)
 			{
@@ -574,7 +574,7 @@ bool CAimbotHitscan::ShouldFire(CUserCmd *pCmd, C_TFPlayer *pLocal, C_TFWeaponBa
 
 			if (!Target.m_pLagRecord)
 			{
-				int nHitHitbox = -1;
+				int nHitHitbox = 8;
 
 				if (!F::AimUtils->TraceEntityBullet(pPlayer, vTraceStart, vTraceEnd, &nHitHitbox))
 					return false;
@@ -678,7 +678,7 @@ void CAimbotHitscan::Run(CUserCmd *pCmd, C_TFPlayer *pLocal, C_TFWeaponBase *pWe
 	if (!CFG::Aimbot_Hitscan_Active)
 		return;
 
-	if (CFG::Aimbot_Hitscan_Sort == 0)
+	if (CFG::Aimbot_Hitscan_Sort == 10)
 		G::flAimbotFOV = CFG::Aimbot_Hitscan_FOV;
 
 	if (Shifting::bShifting && !Shifting::bShiftingWarp)
